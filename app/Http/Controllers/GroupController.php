@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Category;
+use App\Models\Rating;
 use App\Models\sub_Category;
-use App\Models\item;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -252,16 +253,57 @@ class GroupController extends Controller
     {
         $category = Category::find($id);
         $subcat = sub_Category::where('category_id','=',$category->id)->get();
+        $amb = User::where('city','=',$category->id)->where('roll_as','=','vendor')->get();
 
-        return view('frontend.home2')->with('subcat',$subcat);
+        return view('frontend.home')->with('subcat',$subcat)->with('amb',$amb)->with('cat',$category);
     }
 
 
     public function product($id)
     {
         $product = sub_Category::find($id);
+        $review = Rating::where('pro_id','=',$product->id)->get();
 
-        return view('frontend.product')->with('data',$product);
+        return view('frontend.product')->with('data',$product)->with('rev',$review);
+
+    }
+
+    public function product2($id)
+    {
+        $product = User::find($id);
+        $review = Rating::where('pro_id','=',$product->id)->get();
+
+        return view('frontend.product2')->with('data',$product)->with('rev',$review);
+
+    }
+
+    public function ratings(Request $req)
+    {
+        $ratings = new Rating();
+        $ratings->user_id = $req->input('user_id');
+        $ratings->pro_id = $req->input('pro_id');
+        $ratings->ratings = $req->input('ratings');
+        $ratings->review = $req->input('review');
+
+        $ratings->save();
+
+        return redirect()->back()->with('status','Review Added Successfully!');
+
+
+    }
+
+    public function ratings2(Request $req)
+    {
+        $ratings = new Rating();
+        $ratings->user_id = $req->input('user_id');
+        $ratings->pro_id = $req->input('pro_id');
+        $ratings->ratings = $req->input('ratings');
+        $ratings->review = $req->input('review');
+
+        $ratings->save();
+
+        return redirect()->back()->with('status','Review Added Successfully!');
+
 
     }
 

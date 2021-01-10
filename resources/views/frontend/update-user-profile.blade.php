@@ -1,30 +1,40 @@
-@extends('frontend.master')
+@extends('med.pages.master')
 
 @section('content')
 
+<h1 class="text-center" style="margin-top: 110px;">Profile Page</h1>
 
-<div class="container emp-profile" >
+<div class="container emp-profile">
             <form action='edit_profile' method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-3">
                         <div class="profile-img">
+                            <div class="mt-3">
+                                <h3 >
+                                        {{ Auth::user()->name }}
+                                    </h3>
+                                    <h6>
+                                        @if(Auth::user()->roll_as == 'vendor')
+                                            Ambulance Service Provider
+                                        @else
+                                        {{ Auth::user()->roll_as }}
+                                        @endif
+                                    </h6>
+                            </div>
 
-                            <img src="{{ asset('uploads/profile/'. Auth::user()->photo) }}" alt="" style="weidth:200px!important; height:180px!important"/>
+                            <img src="{{ asset('uploads/profile/'. Auth::user()->photo) }}" alt="" style="weidth:200px!important; height:180px!important;"/>
 
                             <div class="mt-2">
                                 <input type="file" name="file"/>
                             </div>
+
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5 class="text-center">
-                                        {{ Auth::user()->name }}
-                                    </h5>
-                                    <h6 class="text-center">
-                                        {{ Auth::user()->roll_as }}
-                                    </h6>
+
 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">

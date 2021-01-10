@@ -177,13 +177,13 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-  @include('frontend.navbar')
+  @include('med.pages.header')
 
     @yield('content')
 
@@ -204,6 +204,36 @@
     new WOW().init();
 
   </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $.fn.stars = function() {
+    return $(this).each(function() {
+        var rating = $(this).data("rating");
+        var fullStar = new Array(Math.floor(rating + 1)).join('<i class="fas fa-star"></i>');
+        var halfStar = ((rating%1) !== 0) ? '<i class="fas fa-star-half-alt"></i>': '';
+        var noStar = new Array(Math.floor($(this).data("numStars") + 1 - rating)).join('<i class="far fa-star"></i>');
+        $(this).html(fullStar + halfStar + noStar);
+    });
+}
+
+//ES6
+$.fn.stars = function() {
+    return $(this).each(function() {
+        const rating = $(this).data("rating");
+        const numStars = $(this).data("numStars");
+        const fullStar = '<i class="fas fa-star"></i>'.repeat(Math.floor(rating));
+        const halfStar = (rating%1!== 0) ? '<i class="fas fa-star-half-alt"></i>': '';
+        const noStar = '<i class="far fa-star"></i>'.repeat(Math.floor(numStars-rating));
+        $(this).html(`${fullStar}${halfStar}${noStar}`);
+    });
+}
+        </script>
+        <script>
+            $(function(){
+                $('.stars').stars();
+            });
+        </script>
 
 
 </body>

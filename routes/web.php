@@ -22,6 +22,10 @@ Route::get('/check', function () {
 });
 
 Route::get('/', function () {
+    return view('med.med_welcome');
+});
+
+Route::get('/service', function () {
     return view('frontend.home');
 });
 
@@ -103,9 +107,21 @@ Route::group(['middleware' => ['auth','isUser']], function () {
 
     Route::post('/edit_profile', [UserController::class, 'edit_profile']);
 
-    // Showing Sub Category Item
-    Route::get('show_sub/{id}',[GroupController::class,'show_sub']);
-    Route::get('show_sub/items/{id}',[GroupController::class,'show_items']);
-    Route::get('product/{id}',[GroupController::class,'product']);
+    Route::view('/p_service','frontend.p_home');
+
+    //ratings controlling
+    Route::post('/ratings', [GroupController::class, 'ratings']);
+    Route::post('/ratings2', [GroupController::class, 'ratings2']);
 
 });
+
+//Route::view('/all_service','frontend.home');
+
+// Showing for all - for every category
+    Route::get('show_sub/{id}',[GroupController::class,'show_sub']);
+
+
+    //
+    Route::get('show_sub/items/{id}',[GroupController::class,'show_items']);
+    Route::get('product/{id}',[GroupController::class,'product']);
+    Route::get('product2/{id}',[GroupController::class,'product2']);

@@ -1,11 +1,13 @@
-@extends('frontend.master')
+@extends('med.pages.master')
 
 @section('content')
 
-<div class="ipro_body" style="height: 100vh">
-<div class="container emp-profile" >
+<div>
+<div class="container">
+    <h1 class="text-center" style="margin-top: 110px;">Profile Page</h1>
             <form method="post">
-                <div class="row">
+                <div class="row bg-gray" >
+
                     <div class="col-md-3">
                         <div class="profile-img">
                             <div>
@@ -16,7 +18,11 @@
                                         {{ Auth::user()->name }}
                                     </h5>
                                     <h6>
+                                        @if(Auth::user()->roll_as == 'vendor')
+                                            Ambulance Service Provider
+                                        @else
                                         {{ Auth::user()->roll_as }}
+                                        @endif
                                     </h6>
                             </div>
 

@@ -3,8 +3,14 @@
 @section('content')
 
 <!--Main layout-->
-  <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
+  <main class=" ">
+    <div class="container dark-grey-text ">
+
+        @if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+     </div>
+ @endif
 
       <!--Grid row-->
       <div class="row wow fadeIn">
@@ -12,7 +18,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="{{ asset('uploads/item/'.$data->photo) }}" class="img-fluid" alt="">
+          <img src="{{ asset('uploads/sub_category/'.$data->photo) }}" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -24,23 +30,29 @@
           <div class="p-4">
 
             <div class="mb-3">
-              <a href="">
-                <span class="badge purple mr-1">{{ $data->sub_category->name }}</span>
-              </a>
-              <a href="">
-                <span class="badge blue mr-1">New</span>
-              </a>
-              <a href="">
-                <span class="badge red mr-1">Bestseller</span>
-              </a>
+              <?php $sum="0" ?>
+                    @foreach($rev as $attrs)
+
+                    <?php $sum += $attrs->ratings; ?>
+
+                    @endforeach
+
+                    <?php
+                    if (count($rev)=="0") {
+                        $avg = "0";
+                    } else {
+                        $avg = $sum / count($rev);
+                    }
+                    ?>
+
+                    <p class="text-primary pt-1"><button class="btn btn-warning">{{ $avg }}</button><span class="stars" data-rating="{{ $avg }}" data-num-stars="5" ></span></p>
             </div>
 
             <p class="lead">
-              <span class="mr-1">
-                <del>{{ $data->offer_price }}/=</del>
-              </span>
-              <span>{{ $data->price }}/=</span>
+
+              <span>Phone: {{ $data->phone }}</span>
             </p>
+
 
             <h4 class="font-weight-bold blue-text">
                 <strong>{{ $data->name }}</strong>
@@ -54,10 +66,10 @@
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
+
+              <a type="button" href="{{ $data->map }}" class="btn btn-primary btn-md my-0 p">View Location
+                <i class="fas fa-search ml-1"></i>
+              </a>
 
             </form>
 
@@ -71,6 +83,41 @@
       <!--Grid row-->
 
       <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+            <h3 class="text-center text-primary">Review</h3>
+            @foreach($rev as $rat)
+                <div style="border-bottom: 1px solid rgb(0, 140, 255);">
+                    <b>{{ $rat->user->name }}</b>
+                    <p class="text-primary pt-1">Ratings: <span class="stars" data-rating="{{ $rat->ratings }}" data-num-stars="5" ></span></p>
+                    <p>REview: {{ $rat->review }}</p>
+                </div>
+            @endforeach
+
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-center text-primary">Give review here</h3>
+
+            <form action="/ratings" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Rating</label>
+                    <input type="number" name="ratings" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter between 1 to 5" min="1" max="5">
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Review</label>
+                    <textarea name="review" id=""  rows="4" class="form-control"></textarea>
+                </div>
+
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="pro_id" value="{{ $data->id }}">
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+        </div>
+      </div>
 
       <!--Grid row-->
       <div class="row d-flex justify-content-center wow fadeIn">
@@ -90,35 +137,7 @@
       </div>
       <!--Grid row-->
 
-      <!--Grid row-->
-      <div class="row wow fadeIn">
 
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
 
     </div>
   </main>

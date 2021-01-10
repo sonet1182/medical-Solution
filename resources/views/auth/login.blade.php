@@ -1,4 +1,4 @@
-@extends('frontend.master')
+@extends('med.pages.master')
 
 @section('content')
 <div class="container" >
