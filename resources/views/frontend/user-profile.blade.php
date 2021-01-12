@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-md-6">
-                                                <label>Division</label>
+                                                <label>City</label>
                                             </div>
                                             <div class="col-md-6 form-control">
                                                 @if(!Auth::user()->city == Null)

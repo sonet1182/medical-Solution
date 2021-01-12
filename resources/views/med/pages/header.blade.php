@@ -58,9 +58,13 @@
                                     <a class="dropdown-item" href="/profile">Profile</a>
                                     @if(Auth::user()->roll_as == "admin")
                                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                        <a class="dropdown-item" href="notify/{{ Auth::user()->id }}">Notification</a>
                                     @endif
                                     @if(Auth::user()->roll_as == "vendor")
                                         <a class="dropdown-item" href="/vendor-dashboard">Dashboard</a>
+                                    @endif
+                                    @if(Auth::user()->roll_as == NULL)
+                                        <a class="dropdown-item" href="notify/{{ Auth::user()->id }}">Notification</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -75,11 +75,55 @@
             <form class="d-flex justify-content-left">
               <!-- Default input -->
 
+              <button type="button" class="btn btn-success btn-md my-0 p"   data-toggle="modal" data-target="#exampleModalCenter">Book Now
+                <i class="fas fa-book ml-1"></i>
+              </button>
+
               <a type="button" href="tel:{{ $data->phone }}" class="btn btn-primary btn-md my-0 p" type="submit">Call Now
                 <i class="fas fa-phone ml-1"></i>
               </a>
 
             </form>
+
+            <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Book {{ $data->name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form action="/book" method="POST">
+                @csrf
+                <div class="form-group" >
+
+                    <label for="exampleInputEmail1">Address Information:</label>
+                    <textarea class="form-control" row="4" aria-describedby="emailHelp" name="address"></textarea>
+                </div>
+
+                <div class="form-group">
+                <label for="exampleInputPassword1">Date</label>
+                <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Password" name="date">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Time</label>
+                <input type="time" class="form-control" id="exampleInputPassword1" placeholder="Password" name="time">
+            </div>
+
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="amb_id" value="{{ $data->id }}">
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
 
           </div>
           <!--Content-->

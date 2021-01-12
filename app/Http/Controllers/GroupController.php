@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Group;
 use App\Models\Category;
 use App\Models\Rating;
@@ -304,6 +305,20 @@ class GroupController extends Controller
 
         return redirect()->back()->with('status','Review Added Successfully!');
 
+
+    }
+
+    public function book(Request $req){
+        $book = new Book();
+        $book->user_id = $req->input('user_id');
+        $book->amb_id = $req->input('amb_id');
+        $book->address = $req->input('address');
+        $book->date = $req->input('date');
+        $book->time = $req->input('time');
+
+        $book->save();
+
+        return redirect()->back()->with('status','Booked Successfully!');
 
     }
 

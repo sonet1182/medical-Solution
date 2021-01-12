@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\Category;
+use App\Models\Book;
 
 class UserController extends Controller
 {
@@ -54,5 +55,14 @@ class UserController extends Controller
         $user->update();
         return redirect()->back()->with('status','Your Profile has Updated!');
 
+    }
+
+    function note($id)
+    {
+        $user = User::find($id);
+        $book = Book::where('user_id','=',$user->id)->get();
+
+        return view('med.pages.note')->with('note',$book);
+        
     }
 }

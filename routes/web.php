@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\AmbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,9 +87,14 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
 Route::group(['middleware' => ['auth','isVendor']], function () {
 
-        Route::get('/vendor-dashboard', function () {
-        return view('vendor.home');
-    });
+    //    Route::get('/vendor-dashboard', function () {
+    //    return view('vendor.home');
+    //});
+
+    Route::get('/vendor-dashboard',[AmbController::class,'index']);
+
+    Route::get('accept/{id}',[AmbController::class,'accept']);
+    Route::get('denied/{id}',[AmbController::class,'denied']);
 
 });
 
@@ -112,6 +118,10 @@ Route::group(['middleware' => ['auth','isUser']], function () {
     //ratings controlling
     Route::post('/ratings', [GroupController::class, 'ratings']);
     Route::post('/ratings2', [GroupController::class, 'ratings2']);
+
+    Route::post('/book', [GroupController::class, 'book']);
+
+    Route::get('notify/{id}', [UserController::class, 'note']);
 
 });
 

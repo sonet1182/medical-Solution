@@ -77,29 +77,38 @@
         <div class="row">
             <div class="col-md-6 px-2">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action text-center">Hospital/clinic</a>
+                    <a href="#" class="list-group-item list-group-item-action text-center">
 
+
+                        Hospital/clinic</a>
 
 
          @foreach($subcat as $data)
 
-                    <a href="{{ url('product/'.$data->id) }}" class="list-group-item list-group-item-action list-group-item-secondary">{{ $data->name }}</a>
+                    <a href="{{ url('product/'.$data->id) }}" class="list-group-item list-group-item-action list-group-item-secondary">
+                        <i class="fas fa-hospital ml-1 text-success mr-3"></i>
+                        {{ $data->name }}</a>
         @endforeach
                     </div>
             </div>
 
             <div class="col-md-6 px-2">
                 <div class="list-group">
-                    <a href="" class="list-group-item list-group-item-action text-center">Ambulance</a>
+                    <a href="" class="list-group-item list-group-item-action text-center">
+
+                        Ambulance</a>
 
          @foreach($amb as $data)
 
-                    <a href="{{ url('product2/'.$data->id) }}" class="text-center list-group-item list-group-item-action list-group-item-secondary">{{ $data->name }} ( Phone: {{ $data->phone }})</a>
+                    <a href="{{ url('product2/'.$data->id) }}" class="text-center list-group-item list-group-item-action list-group-item-secondary">
+                        <i class="fas fa-ambulance ml-1 text-success mr-3"></i>
+                        {{ $data->name }} ( Phone: {{ $data->phone }})
                     @if($data->isUserOnline())
                                                             <label class="py-2 px-3 badge btn-success">Online</label>
                                                         @else
                                                             <label class="py-2 px-3 badge btn-danger">Offline</label>
                                                         @endif
+                                                        </a>
         @endforeach
                     </div>
             </div>
