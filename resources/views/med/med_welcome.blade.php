@@ -12,7 +12,12 @@
                 <span class="subheading">Welcome to Medstepbd</span>
                 <h1 class="mb-4 ">We are here<br>for your Care</h1>
                 <p class="mb-4 text-success font-weight-bold">First website in <span class="text-danger">Bangladesh</span> with best deal for your health safety</p>
-                <p><a href="{{ url('/p_service') }}" class="btn btn-primary py-3 px-4">Take your Service</a> </p>
+                @if(Auth::user() && Auth::user()->city != NULL)
+                <p><a href="{{ url('/p_service') }}" class="btn btn-primary py-3 px-4">Service in Your Area</a> </p>
+                @else
+                <p><a href="{{ url('/service') }}" class="btn btn-primary py-3 px-4">Take Service</a> </p>
+                @endif
+
             </div>
           </div>
         </div>
@@ -43,63 +48,7 @@
     </section>
 
 
-    <section class="ftco-section py-5 mb-5 ftco-no-pb ftco-services-2 bg-light" id="service_section">
-        <div class="container">
-            <div class="row d-flex">
-            <div class=" py-5">
-                <div class="py-lg-5">
-                    <div class="row justify-content-center pb-5">
-                      <div class="col-md-12 heading-section ftco-animate">
-                        <h2 class="mb-3 text-center">Our Services</h2>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6 d-flex align-self-stretch ftco-animate">
-                        <div class="media block-6 services d-flex">
-                          <div class="icon justify-content-center align-items-center d-flex"><span class="flaticon-ambulance"></span></div>
-                          <div class="media-body pl-md-4">
-                            <a href="#"><h3 class="heading mb-3 hv">Emergency Ambulance Services</h3></a>
-                            <p>Book available Emergency Ambulance Service at your required area.</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6 d-flex align-self-stretch ftco-animate">
-                        <div class="media block-6 services d-flex">
-                          <div class="icon justify-content-center align-items-center d-flex"><span class="flaticon-doctor"></span></div>
-                          <div class="media-body pl-md-4">
-                            <a href="{{ url('/main') }}"><h3 class="heading mb-3 hv">Find Hospital</h3></a>
-                            <p>Make the right decision to have your best treatment.</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-6 d-flex align-self-stretch ftco-animate">
-                        <div class="media block-6 services d-flex">
-                          <div class="icon justify-content-center align-items-center d-flex"><span class="flaticon-stethoscope"></span></div>
-                          <div class="media-body pl-md-4">
-                            <h3 class="heading mb-3">Home Checkup Service <span class="text-center">(Coming Soon...)</span></h3>
-                            <p>Book Consultants for personal checkup.</p>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6 d-flex align-self-stretch ftco-animate">
-                        <div class="media block-6 services d-flex">
-                          <div class="icon justify-content-center align-items-center d-flex"><span class="flaticon-24-hours"></span></div>
-                          <div class="media-body pl-md-4">
-                            <h3 class="heading mb-3">24 Hours Medicine <span class="text-center">(Coming Soon...)</span></h3>
-                            <p>Find nearest phermacies in your area.</p>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-    </section>
+    <!--
 
 
     <section class="ftco-intro img" id="provider-section"  style="background-image: url('{{ asset('med/images/images.jpg') }}');">
@@ -109,14 +58,14 @@
                     <div class="col-md-9 text-center">
                         <h2>Your Service is Our Priority</h2>
                         <p>Be a part of our Services</p>
-                        <p class="mb-0 hv"><a href="" class="btn btn-white px-4 py-3">Click Here</a></p>
+
                     </div>
                 </div>
             </div>
         </section>
 
 
-        <!--
+
         <section class="ftco-section ftco-no-pt ftco-no-pb" id="department-section">
         <div class="container-fluid px-0">
             <div class="row no-gutters">
@@ -318,7 +267,7 @@
                 </div>
             </div>
         </section>
-    -->
+
 
 
 
@@ -436,13 +385,16 @@
       </div>
     </section>
 
+
+    -->
+
     <section class="ftco-section testimony-section img" style="background-image: url('{{ asset('med/images/bg_3.jpg') }}');">
         <div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center pb-3">
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-            <span class="subheading">Thanks To</span>
-            <h2 class="mb-4">Our Partners</h2>
+
+            <h2 class="mb-4">Team Members</h2>
           </div>
         </div>
         <div class="row ftco-animate justify-content-center">
@@ -450,13 +402,13 @@
             <div class="carousel-testimony owl-carousel ftco-owl">
               <div class="item">
                 <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img" style="background-image: url('{{ asset('med/images/diuIcon.png') }}')">
+                  <div class="user-img" style="background-image: url('{{ asset('med/images/shimul.jpg') }}')">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text px-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="mb-4">Shimul Chandra Gharami<br>171-15-1170<br>Computer Science and Engineering</p>
                     <p class="name">DIU</p>
                     <span class="position">Daffodil International University</span>
                   </div>
@@ -464,13 +416,13 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img" style="background-image: url('{{ asset('med/images/diuIcon.png') }}')">
+                  <div class="user-img" style="background-image: url('{{ asset('med/images/sonet.jpg') }}')">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text px-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="mb-4">Md. Shawn Shikder Sonet<br>171-15-1182<br>Computer Science and Engineering</p>
                     <p class="name">DIU</p>
                     <span class="position">Daffodil International University</span>
                   </div>
@@ -478,41 +430,13 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img" style="background-image: url('{{ asset('med/images/diuIcon.png') }}')">
+                  <div class="user-img" style="background-image: url('{{ asset('med/images/halim.jpg') }}')">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text px-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">DIU</p>
-                    <span class="position">Daffodil International University</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img" style="background-image: url('{{ asset('med/images/diuIcon.png') }}')">
-                                      <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text px-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">DIU</p>
-                    <span class="position">Daffodil International University</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img" style="background-image: url('{{ asset('med/images/diuIcon.png') }}')">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text px-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="mb-4">Md. Abdul Halim<br>171-15-1408<br>Computer Science and Engineering</p>
                     <p class="name">DIU</p>
                     <span class="position">Daffodil International University</span>
                   </div>

@@ -30,8 +30,8 @@
 					<ul class="navbar-nav nav ml-auto">
 						<li class="nav-item"><a href="{{ url('/') }}" class="nav-link"><span>Home</span></a></li>
 						<li class="nav-item"><a href="{{ url('/#about-section') }}" class="nav-link"><span>About</span></a></li>
-						<li class="nav-item"><a href="{{ url('/#service_section') }}" class="nav-link"><span>Services</span></a></li>
-						<li class="nav-item"><a href="{{ url('/amb_provider') }}" class="nav-link"><span>Service Provider</span></a></li>
+						<li class="nav-item"><a href="{{ url('/service') }}" class="nav-link"><span>Services</span></a></li>
+
 						<li class="nav-item"><a href="{{ url('/#blog-section') }}" class="nav-link"><span>Blog</span></a></li>
                         <li class="nav-item"><a href="{{ url('/#contact-section') }}" class="nav-link"><span>Contact</span></a></li>
 
@@ -58,13 +58,13 @@
                                     <a class="dropdown-item" href="/profile">Profile</a>
                                     @if(Auth::user()->roll_as == "admin")
                                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                        <a class="dropdown-item" href="notify/{{ Auth::user()->id }}">Notification</a>
+                                        <a class="dropdown-item" href="{{ url('notify')}}">Notification</a>
                                     @endif
                                     @if(Auth::user()->roll_as == "vendor")
                                         <a class="dropdown-item" href="/vendor-dashboard">Dashboard</a>
                                     @endif
                                     @if(Auth::user()->roll_as == NULL)
-                                        <a class="dropdown-item" href="notify/{{ Auth::user()->id }}">Notification</a>
+                                        <a class="dropdown-item" href="{{ url('notify')}}">Notification</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -3,17 +3,10 @@
 @section('content')
 
 
-
-
-
 <!--Main layout-->
 <main>
 
-
-
-
-
-    <div class="container">
+    <div class="container" style="height:70vh">
 
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-3">
@@ -85,7 +78,7 @@
 
          @foreach($subcat as $data)
 
-                    <a href="{{ url('product/'.$data->id) }}" class="list-group-item list-group-item-action list-group-item-secondary">
+                    <a href="{{ url('hospital/'.$data->id) }}" class="list-group-item list-group-item-action list-group-item-secondary">
                         <i class="fas fa-hospital ml-1 text-success mr-3"></i>
                         {{ $data->name }}</a>
         @endforeach
@@ -100,7 +93,7 @@
 
          @foreach($amb as $data)
 
-                    <a href="{{ url('product2/'.$data->id) }}" class="text-center list-group-item list-group-item-action list-group-item-secondary">
+                    <a href="{{ url('ambulance/'.$data->id) }}" class="text-center list-group-item list-group-item-action list-group-item-secondary">
                         <i class="fas fa-ambulance ml-1 text-success mr-3"></i>
                         {{ $data->name }} ( Phone: {{ $data->phone }})
                     @if($data->isUserOnline())

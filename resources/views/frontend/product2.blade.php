@@ -72,6 +72,8 @@
               sint voluptatibus!
               Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
 
+              @if(Auth::user())
+
             <form class="d-flex justify-content-left">
               <!-- Default input -->
 
@@ -125,6 +127,8 @@
   </div>
 </div>
 
+@endif
+
           </div>
           <!--Content-->
 
@@ -150,6 +154,8 @@
             @endforeach
 
         </div>
+
+        @if(Auth::user())
         <div class="col-md-6">
             <h3 class="text-center text-primary">Give review here</h3>
 
@@ -171,6 +177,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
         </div>
+        @endif
       </div>
 
       <!--Grid row-->

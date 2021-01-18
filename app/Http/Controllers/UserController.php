@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $item = Group::all();
         $city = Category::all();
-        return view('frontend.update-user-profile')->with('data',$item)->with('city',$city);
+        return view('frontend.update-user-profile')->with('data', $item)->with('city', $city);
     }
 
     function edit_profile(Request $req)
@@ -37,32 +37,27 @@ class UserController extends Controller
         $user->division = $req->input('division');
         $user->city = $req->input('city');
 
-        if($req->hasfile('file'))
-        {
-            $destination = 'uploads/profile/'.$user->photo;
-            if(File::exists($destination))
-            {
+        if ($req->hasfile('file')) {
+            $destination = 'uploads/profile/' . $user->photo;
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
             $file = $req->file('file');
             $extension = $file->getClientOriginalExtension();
-            $filename = time(). '.' . $extension;
+            $filename = time() . '.' . $extension;
             $file->move('uploads/profile/', $filename);
 
             $user->photo = $filename;
         }
 
         $user->update();
-        return redirect()->back()->with('status','Your Profile has Updated!');
-
+        return redirect()->back()->with('status', 'Your Profile has Updated!');
     }
 
-    function note($id)
+    function note()
     {
-        $user = User::find($id);
-        $book = Book::where('user_id','=',$user->id)->get();
+        $book = Book::where('user_id', '=', Auth::user()->id)->get();
 
-        return view('med.pages.note')->with('note',$book);
-        
+        return view('med.pages.note')->with('note', $book);
     }
 }

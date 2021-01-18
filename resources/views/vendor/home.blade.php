@@ -13,7 +13,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Dokan - Vendor Panel</a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('med/images/mainlogo.png') }}" alt="logo" height="50" width="200"></a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -32,7 +32,15 @@
                         <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                     </div>
                 </li>
             </ul>
@@ -152,7 +160,7 @@
                                                         @else
                                                             <button class="btn btn-success px-3 py-1">Accepted</button>
                                                         @endif
-                    
+
                                                     </td>
                                                     <td>
                                                         <a href="accept/{{ $data->id }}" class="badge badge-pill btn-primary px-3 py-2">Accept</a>

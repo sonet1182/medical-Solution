@@ -17,7 +17,7 @@
                             <div class="col-md-6">
 
                                 <select name="roll_as" id="" class="form-control">
-                                    <option>--- Select Role ---</option>
+                                    <option value="">--- Select Role ---</option>
                                     <option value="">User</option>
                                     <option value="vendor">Ambulance Service Provider</option>
                                 </select>

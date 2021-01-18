@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                         <label for="exampleInputPassword1">Phone</label>
-                                        <input type="text" name="phone" class="form-control" id="exampleInputEmail1"  placeholder="Name">
+                                        <input type="text" name="phone" class="form-control" id="exampleInputEmail1"  placeholder="Phone Number">
                                     </div>
                                     </div>
                                     <div class="form-check">

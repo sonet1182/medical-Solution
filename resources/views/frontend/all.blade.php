@@ -3,15 +3,8 @@
 @section('content')
 
 
-
-
-
 <!--Main layout-->
 <main>
-
-
-
-
 
     <div class="container" style="height:70vh">
 
@@ -59,7 +52,11 @@
                 </ul>
                 <!-- Links -->
 
-
+                <form class="form-inline">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
             </div>
             <!-- Collapsible content -->
 
@@ -68,52 +65,43 @@
 
 
         <!--Section: Products v.3-->
-        <div class="mb-4">
-            <div class="">
 
-                <h4 class="text-center">{{ Auth::user()->group->name }}</h4><br>
-                 <h3 class="text-center">{{ Auth::user()->category->name }}</h3>
-
-            </div>
 
         <div class="row">
             <div class="col-md-6 px-2">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action text-center"><b>Hospital/Clinic</b></a>
+                    <a href="#" class="list-group-item list-group-item-action text-center">
 
-        @php
-            $item = App\Models\sub_Category::where('category_id','=',Auth::user()->city)->get();
-        @endphp
 
-         @foreach($item as $data)
+                        Hospital/clinic</a>
 
-                    <a href="{{ url('hospital/'.$data->id) }}" class="list-group-item list-group-item-action text-center list-group-item-secondary">
-                        <i class="fas fa-hospital ml-1 text-success mr-3"></i>
-                        {{ $data->name }}</a>
-        @endforeach
                     </div>
+
+                    <div  class="card text-center p-5">
+
+                        <h1><i class="fa fa-hospital" aria-hidden="true"></i></h1>
+
+                        <h2 class="text-center py-5">Find Hospital and Show Review</h2>
+
+                    </div>
+
+
             </div>
 
             <div class="col-md-6 px-2">
                 <div class="list-group">
-                    <a href="" class="list-group-item list-group-item-action text-center"><b>Ambulance</b></a>
+                    <a href="" class="list-group-item list-group-item-action text-center">
 
-        @php
-            $item = App\Models\User::where('roll_as','=','vendor')->where('city','=',Auth::user()->city)->get();
-        @endphp
+                        Ambulance</a>
 
-         @foreach($item as $data)
+                    </div>
 
-                    <a href="{{ url('ambulance/'.$data->id) }}" class="text-center list-group-item list-group-item-action list-group-item-secondary">
-                        <i class="fas fa-ambulance ml-1 text-success mr-3"></i>
-                        {{ $data->name }} ( Phone: {{ $data->phone }})
-                    @if($data->isUserOnline())
-                        <label class="py-1 px-3 badge btn-success">Online</label>
-                             @else
-                            <label class="py-1 px-3 badge btn-danger">Offline</label>
-                            @endif
-                    </a>
-        @endforeach
+                    <div  class="card text-center p-5">
+
+                        <h1><i class="fa fa-ambulance" aria-hidden="true"></i></h1>
+
+                        <h2 class="text-center py-5">Hire Ambulance by Review</h2>
+
                     </div>
             </div>
         </div>

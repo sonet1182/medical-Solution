@@ -44,7 +44,7 @@
     <!--Copyright-->
     <div class="footer-copyright py-3">
       © 2021 Copyright:
-      <a href="http://sonetcse.unaux.com/" target="_blank"> Md. Shawn Shikder Sonet </a>
+      <a href="http://sonetcse.unaux.com/" target="_blank"> Sonet-Shimul-Halim </a>
     </div>
     <!--/.Copyright-->
 

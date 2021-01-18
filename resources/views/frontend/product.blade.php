@@ -16,9 +16,9 @@
       <div class="row wow fadeIn">
 
         <!--Grid column-->
-        <div class="col-md-6 my-4">
+        <div class="col-md-6 my-4 py-auto">
 
-          <img src="{{ asset('uploads/sub_category/'.$data->photo) }}" class="img-fluid" alt="">
+          <img src="{{ asset('uploads/sub_category/'.$data->photo) }}" class="img-fluid" alt=""  >
 
         </div>
         <!--Grid column-->
@@ -91,11 +91,12 @@
                 <div style="border-bottom: 1px solid rgb(0, 140, 255);">
                     <b>{{ $rat->user->name }}</b>
                     <p class="text-primary pt-1">Ratings: <span class="stars" data-rating="{{ $rat->ratings }}" data-num-stars="5" ></span></p>
-                    <p>REview: {{ $rat->review }}</p>
+                    <p>Review: {{ $rat->review }}</p>
                 </div>
             @endforeach
 
         </div>
+        @if(Auth::user())
         <div class="col-md-6">
             <h3 class="text-center text-primary">Give review here</h3>
 
@@ -117,6 +118,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
         </div>
+        @endif
       </div>
 
       <!--Grid row-->
